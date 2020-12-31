@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessExpress", "ProcessExpress.csproj", "{DBCD1E31-D359-41D0-97DB-6399F21CEE32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessExpress", "ProcessExpress\ProcessExpress.csproj", "{DBCD1E31-D359-41D0-97DB-6399F21CEE32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestrutura", "..\Infraestrutura\Infraestrutura.csproj", "{E44C8711-4162-45D6-B8CE-14E10F2D7C99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestrutura", "Infraestrutura\Infraestrutura.csproj", "{E44C8711-4162-45D6-B8CE-14E10F2D7C99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "..\Application\Application.csproj", "{0F23D620-5FFB-44A5-9897-CA918EDEC193}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{0F23D620-5FFB-44A5-9897-CA918EDEC193}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "..\Domain\Domain.csproj", "{6EB2335A-CF10-44FF-A0AB-C52D53DBB418}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{6EB2335A-CF10-44FF-A0AB-C52D53DBB418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Languages", "..\Languages\Languages.csproj", "{4D70EB76-0A0C-4ED6-BB28-0E0E8877F29D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Languages", "Languages\Languages.csproj", "{4D70EB76-0A0C-4ED6-BB28-0E0E8877F29D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
