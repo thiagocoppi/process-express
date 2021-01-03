@@ -1,0 +1,47 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System;
+using System.Net;
+using System.Threading.Tasks;
+
+namespace ProcessExpress.Middlewares
+{
+    public class GlobalExceptionMiddleware : IMiddleware
+    {
+        private readonly ILogger<GlobalExceptionMiddleware> _logger;
+
+        public GlobalExceptionMiddleware(ILogger<GlobalExceptionMiddleware> logger)
+        {
+            _logger = logger;
+        }
+
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        {
+            try
+            {
+                await next(context);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Ocorreu um erro na requisição - Erro ocorrido: {ex}");
+                await HandleExceptionAsync(context, ex);
+            }
+        }
+
+        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+        {
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+            var json = new
+            {
+                context.Response.StatusCode,
+                Message = "Ocorreu um erro na sua requisição, tente novamente mais tarde!",
+                Detailed = exception
+            };
+
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(json));
+        }
+    }
+}

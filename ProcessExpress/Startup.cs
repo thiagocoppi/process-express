@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using OFX;
+using ProcessExpress.Middlewares;
 using System.Text;
 
 namespace ProcessExpress
@@ -52,6 +53,7 @@ namespace ProcessExpress
             services.RegisterAllTypes<IDomainService>();
             services.RegisterAllTypesOFX<IDomainService>();
             services.RegisterAllStores();
+            services.AddTransient<GlobalExceptionMiddleware>();
 
             services.AddSwaggerConfiguration();
             services.ConfigureMidiatR();
@@ -73,7 +75,7 @@ namespace ProcessExpress
             app.UseAuthorization();
 
             app.ConfigureSwagger();
-
+            app.UseMiddleware<GlobalExceptionMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
