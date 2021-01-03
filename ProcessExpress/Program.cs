@@ -88,7 +88,7 @@ namespace ProcessExpress
             return new ServiceCollection()
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
-                    .AddSqlServer()
+                    .AddPostgres()
                     .WithGlobalConnectionString(configuration["ConnectionStrings:DefaultConnection"])
                     .ScanIn(typeof(BaseMigration).Assembly).For.Migrations())
                 .AddLogging(lb => lb.AddFluentMigratorConsole())

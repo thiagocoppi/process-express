@@ -5,6 +5,15 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+RUN groupadd -g 1000 processexpress  \
+&& useradd -g 1000 -s /bin/bash processexpress 
+
+RUN chown processexpress:processexpress /app
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone 
+
+RUN mkdir /arquivos
+
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["ProcessExpress.csproj", ""]

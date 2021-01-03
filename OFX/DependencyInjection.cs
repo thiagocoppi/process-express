@@ -3,11 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 
-namespace Domain
+namespace OFX
 {
     public static class DependecyInjection
     {
-        public static void RegisterAllTypes<T>(this IServiceCollection services)
+        public static void RegisterAllTypesOFX<T>(this IServiceCollection services)
         {
             var typeInterface = typeof(T);
 

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using OFX;
 using System.Text;
 
 namespace ProcessExpress
@@ -49,6 +50,7 @@ namespace ProcessExpress
             });
 
             services.RegisterAllTypes<IDomainService>();
+            services.RegisterAllTypesOFX<IDomainService>();
             
 
             services.AddSwaggerConfiguration();

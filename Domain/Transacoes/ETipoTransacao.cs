@@ -2,7 +2,7 @@
 {
     public enum ETipoTransacao
     {
-        OUTROS,
+        OTHERS,
         TED,
         DOC,
         PIX

@@ -1,5 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using Npgsql;
 using System.Data;
 
 namespace Infraestrutura.Context
@@ -35,7 +35,7 @@ namespace Infraestrutura.Context
         {
             if (_dbConnection is null)
             {
-                _dbConnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+                _dbConnection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection"));
             }
 
             return _dbConnection;
