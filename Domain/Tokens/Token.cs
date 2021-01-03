@@ -1,4 +1,7 @@
-﻿namespace Domain.Tokens
+﻿using Domain.Exceptions;
+using Languages;
+
+namespace Domain.Tokens
 {
     public sealed class Token
     {
@@ -6,6 +9,11 @@
 
         public Token(string info)
         {
+            if (string.IsNullOrEmpty(info))
+            {
+                throw new BusinessException(Messages.TokenInvalidoParaCriacao);
+            }
+
             Info = info;
         }
     }

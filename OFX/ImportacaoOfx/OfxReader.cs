@@ -1,5 +1,7 @@
-﻿using Domain.Ofx;
+﻿using Domain.Exceptions;
+using Domain.Ofx;
 using Domain.Transacoes;
+using Languages;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using OfxSharp;
@@ -33,6 +35,11 @@ namespace OFX.ImportacaoOfx
             
             foreach (var file in arquivosImportar)
             {
+                if (!file.ToLower().Contains(".ofx"))
+                {
+                    throw new BusinessException(string.Format(Messages.TipoArquivoInvalido, file));
+                }
+
                 var parser = new OFXDocumentParser();
                 var ofxDocument = parser.Import(new FileStream(file, FileMode.Open));
                 var banco = new Banco(string.Empty, int.Parse(ofxDocument.Account.BankId));

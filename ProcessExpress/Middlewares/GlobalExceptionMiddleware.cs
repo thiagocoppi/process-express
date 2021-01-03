@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Domain.Exceptions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -22,6 +23,11 @@ namespace ProcessExpress.Middlewares
             {
                 await next(context);
             }
+            catch(BusinessException ex)
+            {
+                _logger.LogError($"Ocorreu um erro interno tratado - Erro ocorrido {ex}");
+                await HandleBusinessException(context, ex);
+            }
             catch (Exception ex)
             {
                 _logger.LogError($"Ocorreu um erro na requisição - Erro ocorrido: {ex}");
@@ -38,6 +44,21 @@ namespace ProcessExpress.Middlewares
             {
                 context.Response.StatusCode,
                 Message = "Ocorreu um erro na sua requisição, tente novamente mais tarde!",
+                Detailed = exception
+            };
+
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(json));
+        }
+
+        private static Task HandleBusinessException(HttpContext context, BusinessException exception)
+        {
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+            var json = new
+            {
+                context.Response.StatusCode,
+                Message = exception.Mensagem,
                 Detailed = exception
             };
 

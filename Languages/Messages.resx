@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TipoArquivoInvalido" xml:space="preserve">
+    <value>O tipo do arquivo {0} é inválido para importação!</value>
+  </data>
   <data name="TokenInvalido" xml:space="preserve">
-    <value>01|Token informado para decodificar é inválido!</value>
+    <value>Token informado para decodificar é inválido!</value>
+  </data>
+  <data name="TokenInvalidoParaCriacao" xml:space="preserve">
+    <value>O Token informado para criação é inválido</value>
   </data>
 </root>

@@ -25,8 +25,6 @@ namespace ProcessExpress
             }
 
             CreateHost(args);
-
-
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

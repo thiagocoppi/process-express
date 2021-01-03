@@ -61,11 +61,29 @@ namespace Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 01|Token informado para decodificar é inválido!.
+        ///   Looks up a localized string similar to O tipo do arquivo {0} é inválido para importação!.
+        /// </summary>
+        public static string TipoArquivoInvalido {
+            get {
+                return ResourceManager.GetString("TipoArquivoInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token informado para decodificar é inválido!.
         /// </summary>
         public static string TokenInvalido {
             get {
                 return ResourceManager.GetString("TokenInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O Token informado para criação é inválido.
+        /// </summary>
+        public static string TokenInvalidoParaCriacao {
+            get {
+                return ResourceManager.GetString("TokenInvalidoParaCriacao", resourceCulture);
             }
         }
     }
