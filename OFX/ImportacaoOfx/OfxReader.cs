@@ -36,21 +36,27 @@ namespace OFX.ImportacaoOfx
 
                 foreach (var transaction in ofxDocument.Transactions)
                 {
-                    var transacao = new Transacao(conta, (ETipoTransacao)Enum.Parse(typeof(ETipoTransacao), transaction.TransType.ToString()), transaction.Date, transaction.Amount,
-                        ulong.Parse(transaction.CheckNum), transaction.ReferenceNumber.ApenasNumeros(), transaction.Memo, ulong.Parse(transaction.TransactionId));
+                    var bancosExistente = await _bancoStore.BuscarBancoPeloCodigo(banco.Codigo);
 
-                    banco = await _bancoStore.BuscarBancoPeloCodigo(banco.Codigo);
-
-                    if (banco is null)
+                    if (bancosExistente is null)
                     {
-                        await _bancoStore.RegistrarBanco(banco);
+                        banco = await _bancoStore.RegistrarBanco(banco);
                     }
 
-                    conta.AlterarBanco(banco);
+                    conta.AlterarBanco(bancosExistente ?? banco);
 
-                    await _contaStore.RegistrarConta(conta);
+                    conta = await _contaStore.RegistrarConta(conta);
 
+                    if (conta.Id == Guid.Empty)
+                    {
+                        var guidContaCadastrada = await _contaStore.BuscarIdentificadorConta(conta);
+                        conta.AlterarIdentificador(guidContaCadastrada);
+                    }
 
+                    var transacao = new Transacao(conta, (ETipoTransacao)Enum.Parse(typeof(ETipoTransacao), transaction.TransType.ToString()), transaction.Date, transaction.Amount,
+                        transaction.CheckNum, transaction.ReferenceNumber, transaction.Memo, long.Parse(transaction.TransactionId));
+
+                    await _transacaoStore.SalvarTransacao(transacao);
                 }
             }
         }

@@ -7,16 +7,16 @@ namespace Domain.Transacoes
     {   
         public Banco Banco { get; private set; }
         public long Numero { get; private set; }
-        public int Agencia { get; private set; }
+        public long Agencia { get; private set; }
 
-        public Conta(Banco banco, long numero, int agencia)
+        public Conta(Banco banco, long numero, long agencia)
         {
             Banco = banco;
             Numero = numero;
             Agencia = agencia;
         }
 
-        public Conta(Guid id, Banco banco, long numero, int agencia)
+        public Conta(Guid id, Banco banco, long numero, long agencia)
         {
             AlterarIdentificador(id);
             Banco = banco;

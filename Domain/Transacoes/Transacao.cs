@@ -9,23 +9,23 @@ namespace Domain.Transacoes
         public ETipoTransacao TipoTransacao { get; private set; }
         public DateTime DataTransacao { get; private set; }
         public decimal Valor { get; private set; }
-        public ulong CheckNum { get; private set; }
-        public int NumeroReferencia { get; private set; }
+        public string Protocolo { get; private set; }
+        public string NumeroReferencia { get; private set; }
         public string Descricao { get; private set; }
-        public ulong IdentificadorTransacao { get; private set; }
+        public long IdentificadorTransacao { get; private set; }
 
-        public Transacao(Conta conta, ETipoTransacao tipoTransacao, DateTime dataTransacao, decimal valor, ulong checkNum, int numeroReferencia, string descricao)
+        public Transacao(Conta conta, ETipoTransacao tipoTransacao, DateTime dataTransacao, decimal valor, string protocolo, string numeroReferencia, string descricao)
         {
             Conta = conta;
             TipoTransacao = tipoTransacao;
             DataTransacao = dataTransacao;
             Valor = valor;
-            CheckNum = checkNum;
+            Protocolo = protocolo;
             NumeroReferencia = numeroReferencia;
             Descricao = descricao;
         }
 
-        public Transacao(Conta conta, ETipoTransacao tipoTransacao, DateTime dataTransacao, decimal valor, ulong checkNum, int numeroReferencia, string descricao, ulong identificadorTransacao) : this(conta, tipoTransacao, dataTransacao, valor, checkNum, numeroReferencia, descricao)
+        public Transacao(Conta conta, ETipoTransacao tipoTransacao, DateTime dataTransacao, decimal valor, string checkNum, string numeroReferencia, string descricao, long identificadorTransacao) : this(conta, tipoTransacao, dataTransacao, valor, checkNum, numeroReferencia, descricao)
         {
             IdentificadorTransacao = identificadorTransacao;
         }

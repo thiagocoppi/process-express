@@ -4,11 +4,11 @@ namespace Domain.Transacoes
 {
     public static class TransacaoExtension
     {
-        public static int ApenasNumeros(this string numeroConta)
+        public static long ApenasNumeros(this string normalize)
         {
-            numeroConta = Regex.Replace(numeroConta, "[^0-9]", "");
+            normalize = Regex.Replace(normalize, "[^0-9]", "");
 
-            return int.Parse(numeroConta);
+            return long.Parse(normalize);
         }
     }
 }

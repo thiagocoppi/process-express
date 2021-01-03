@@ -29,10 +29,23 @@ namespace Infraestrutura.Stores
             return conta;
         }
 
+        public async Task<Guid> BuscarIdentificadorConta(Conta conta)
+        {
+            return await _processExpressContext.GetConnection().QueryFirstOrDefaultAsync<Guid>(SQL_VERIFICAR_CONTA_EXISTENTE, new
+            {
+                numero = conta.Numero,
+                agencia = conta.Agencia,
+                banco_id = conta.Banco.Id
+            });
+        }
+
         private const string SQL_VERIFICAR_CONTA_CADASTRADA =
             @"INSERT INTO CONTA (NUMERO,AGENCIA,BANCO_ID)
                 SELECT :numero, :agencia, :banco_id WHERE
                     NOT EXISTS (SELECT id FROM CONTA WHERE NUMERO = :numero AND AGENCIA = :agencia AND BANCO_ID = :banco_id)
                 RETURNING id";
+
+        private const string SQL_VERIFICAR_CONTA_EXISTENTE =
+            @"SELECT id FROM CONTA WHERE NUMERO = :numero AND AGENCIA = :agencia AND BANCO_ID = :banco_id";
     }
 }
