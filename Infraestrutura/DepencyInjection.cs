@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Domain.Base;
+using Infraestrutura.Context;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using NSwag;
 using NSwag.Generation.Processors.Security;
+using System;
+using System.Linq;
 
 namespace Infraestrutura
 {
@@ -35,6 +39,30 @@ namespace Infraestrutura
                 }));
             });
             return services;
+        }
+
+        public static void RegisterAllStores(this IServiceCollection services)
+        {
+            var typeInterface = typeof(IStore);
+            services.AddSingleton<IProcessExpressContext, ProcessExpressContext>();
+
+            AppDomain
+                .CurrentDomain
+                .GetAssemblies()
+                .SelectMany(r => r.GetTypes())
+                .Where(r => typeInterface.IsAssignableFrom(r))
+                .ToList()
+                .ForEach(types =>
+                {
+                    var interfacesServices = types.GetInterfaces().Where(r => r.Name != typeof(IStore).Name).ToList();
+                    if (interfacesServices.Count > 0)
+                    {
+                        foreach (var interfaceEach in interfacesServices)
+                        {
+                            services.AddScoped(interfaceEach, types);
+                        }
+                    }
+                });
         }
 
         public static IApplicationBuilder ConfigureSwagger(this IApplicationBuilder app)

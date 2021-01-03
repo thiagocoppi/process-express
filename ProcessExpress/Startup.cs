@@ -51,7 +51,7 @@ namespace ProcessExpress
 
             services.RegisterAllTypes<IDomainService>();
             services.RegisterAllTypesOFX<IDomainService>();
-            
+            services.RegisterAllStores();
 
             services.AddSwaggerConfiguration();
             services.ConfigureMidiatR();

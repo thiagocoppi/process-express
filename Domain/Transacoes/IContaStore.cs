@@ -5,6 +5,6 @@ namespace Domain.Transacoes
 {
     public interface IContaStore : IStore
     {
-        Task RegistrarConta(Conta conta);
+        Task<Conta> RegistrarConta(Conta conta);
     }
 }

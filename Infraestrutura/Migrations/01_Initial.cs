@@ -16,7 +16,7 @@ namespace Infraestrutura.Migrations
             Execute.Sql("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";");
             Create.Table("banco").WithDescription("Tabela que armazena todos os bancos fornecidos pelo banco central")
                 .WithColumn("id").AsGuid().NotNullable().WithDefault(SystemMethods.NewGuid).PrimaryKey().WithColumnDescription("Identificador único da tabela")
-                .WithColumn("nome").AsInt64().WithColumnDescription("Nome do banco")
+                .WithColumn("nome").AsString().WithColumnDescription("Nome do banco")
                 .WithColumn("codigo").AsInt32().NotNullable().WithColumnDescription("Código único do banco dentro do BC");
 
             Create.Table("conta").WithDescription("Tabela que armazena as contas dos clientes")

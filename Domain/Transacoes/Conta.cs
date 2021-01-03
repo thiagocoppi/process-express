@@ -23,5 +23,10 @@ namespace Domain.Transacoes
             Numero = numero;
             Agencia = agencia;
         }
+
+        public void AlterarBanco(Banco banco)
+        {
+            Banco = banco;
+        }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using Domain.Base;
+using System.Threading.Tasks;
 
 namespace Domain.Transacoes
 {
-    public interface IBancoStore
+    public interface IBancoStore : IStore
     {
         Task<Banco> RegistrarBanco(Banco banco);
         Task<Banco> BuscarBancoPeloCodigo(int codigoBanco);

@@ -26,15 +26,12 @@ namespace Infraestrutura.Stores
 
         public async Task<Banco> RegistrarBanco(Banco banco)
         {
-            var param = new DynamicParameters();
-            param.Add("nome", banco.Nome, direction: ParameterDirection.Input);
-            param.Add("codigo", banco.Codigo, direction: ParameterDirection.Input);
-            param.Add("id", direction: ParameterDirection.Output);
+            var idGerado = await _context.GetConnection().ExecuteScalarAsync<Guid>(SQL_REGISTRAR_BANCO, new 
+            { nome = banco.Nome, 
+              codigo = banco.Codigo 
+            });
 
-
-            await _context.GetConnection().ExecuteAsync(SQL_REGISTRAR_BANCO, param);
-
-            banco.AlterarIdentificador(param.Get<Guid>("id"));
+            banco.AlterarIdentificador(idGerado);
 
             return banco;
         }
@@ -43,6 +40,6 @@ namespace Infraestrutura.Stores
             @"SELECT ID, NOME, CODIGO FROM BANCO WHERE CODIGO = :codigo";
 
         private const string SQL_REGISTRAR_BANCO =
-            @"INSERT INTO BANCO(NOME,CODIGO) VALUES (:nome,:codigo) RETURNING :id";
+            @"INSERT INTO BANCO(NOME,CODIGO) VALUES (:nome,:codigo) RETURNING id";
     }
 }
