@@ -1,4 +1,5 @@
-﻿using Infraestrutura.QueryStore;
+﻿using Infraestrutura.Models.ContaCorrente;
+using Infraestrutura.QueryStore;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,15 +26,21 @@ namespace Application.Queries.ContaCorrente.BuscarConta
 
             return new BuscarContaQueryResult()
             {
-                Agencia = retorno.Agencia,
-                Banco = new BancoQueryResult()
+                Conta = new ContaCorrenteDto()
                 {
-                    Id = retorno.Banco.bancoId,
-                    Codigo = retorno.Banco.Codigo,
-                    Nome = retorno.Banco.Nome
-                },
-                Id = retorno.Id,
-                Numero = retorno.Numero
+                    Agencia = retorno.Agencia,
+                    Banco = new BancoDto()
+                    {
+                        BancoId = retorno.Banco.BancoId,
+                        Codigo = retorno.Banco.Codigo,
+                        Nome = retorno.Banco.Nome
+                    },
+                    Contato = retorno.Contato,
+                    DataNascimento = retorno.DataNascimento,
+                    Nome = retorno.Nome,
+                    Numero = retorno.Numero,
+                    Id = retorno.Id
+                }
             };
             
         }

@@ -29,7 +29,6 @@ namespace Domain.Transacoes
 
         public Conta(Guid id, DateTime dataNascimento, string nomeTitular, string telefoneContato)
         {
-            AlterarIdentificador(id);
             DataNascimento = dataNascimento;
             NomeTitular = nomeTitular;
             TelefoneContato = telefoneContato;
