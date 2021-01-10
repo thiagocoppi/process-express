@@ -5,6 +5,8 @@ using Infraestrutura;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -50,6 +52,19 @@ namespace ProcessExpress
                 };
             });
 
+            services.AddApiVersioning(p =>
+            {
+                p.DefaultApiVersion = new ApiVersion(1, 0);
+                p.ReportApiVersions = true;
+                p.AssumeDefaultVersionWhenUnspecified = true;
+            });
+
+            services.AddVersionedApiExplorer(p =>
+            {
+                p.GroupNameFormat = "'v'VVV";
+                p.SubstituteApiVersionInUrl = true;
+            });
+
             services.RegisterAllTypes<IDomainService>();
             services.RegisterAllTypesOFX<IDomainService>();
             services.RegisterAllStores();
@@ -60,7 +75,7 @@ namespace ProcessExpress
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -74,7 +89,7 @@ namespace ProcessExpress
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.ConfigureSwagger();
+            app.ConfigureSwagger(provider);
             app.UseMiddleware<GlobalExceptionMiddleware>();
             app.UseEndpoints(endpoints =>
             {

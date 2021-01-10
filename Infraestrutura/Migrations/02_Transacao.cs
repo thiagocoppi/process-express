@@ -20,6 +20,7 @@ namespace Infraestrutura.Migrations
                 .WithColumn("valor").AsDecimal().NotNullable().WithColumnDescription("Valor da transação")
                 .WithColumn("protocolo").AsString().NotNullable().WithColumnDescription("Protocolo da transação")
                 .WithColumn("codigo_referencia").AsString().NotNullable().WithColumnDescription("Código de referência da transação")
+                .WithColumn("hash").AsString().NotNullable().WithColumnDescription("Hash que identifica a transação")
                 .WithColumn("identificador_transacao").AsInt64().NotNullable().Unique().WithColumnDescription("Identificador único da transação")
                 .WithColumn("descricao").AsString().NotNullable().WithColumnDescription("Descrição da transação");
         }

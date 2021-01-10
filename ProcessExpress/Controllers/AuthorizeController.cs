@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProcessExpress.Controllers
 {
+    [Route("process-express/api/v{version:apiVersion}/[controller]")]
     public class AuthorizeController : ApiController
     {
         /// <summary>

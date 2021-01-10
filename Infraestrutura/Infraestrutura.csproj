@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -9,6 +9,8 @@
     <PackageReference Include="Dapper.FluentMap" Version="2.0.0" />
     <PackageReference Include="FluentMigrator.Runner" Version="3.2.10" />
     <PackageReference Include="FluentMigrator.Runner.SqlServer" Version="3.2.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="4.2.0" />
     <PackageReference Include="Npgsql" Version="5.0.1.1" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.9.4" />
   </ItemGroup>

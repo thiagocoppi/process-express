@@ -5,6 +5,12 @@ namespace Domain.Transacoes
 {
     public interface ITransacaoStore : IStore
     {
-        Task SalvarTransacao(Transacao transacao);
+        Task<Transacao> SalvarTransacaoComIdentificadorUnico(Transacao transacao);
+
+        Task<Transacao> SalvarTransacao(Transacao transacao);
+
+        Task<bool> VerificarHashExiste(string hash);
+
+        Task<bool> VerificarIdentificadorUnicoTransacaoFiscoExiste(long identificador);
     }
 }

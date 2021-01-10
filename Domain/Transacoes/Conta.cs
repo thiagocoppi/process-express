@@ -8,6 +8,9 @@ namespace Domain.Transacoes
         public Banco Banco { get; private set; }
         public long Numero { get; private set; }
         public long Agencia { get; private set; }
+        public DateTime DataNascimento { get; private set; }
+        public string NomeTitular { get; private set; }
+        public string TelefoneContato { get; private set; }
 
         public Conta(Banco banco, long numero, long agencia)
         {
@@ -24,9 +27,21 @@ namespace Domain.Transacoes
             Agencia = agencia;
         }
 
+        public Conta(Guid id, DateTime dataNascimento, string nomeTitular, string telefoneContato)
+        {
+            AlterarIdentificador(id);
+            DataNascimento = dataNascimento;
+            NomeTitular = nomeTitular;
+            TelefoneContato = telefoneContato;
+        }
+
+
+
         public void AlterarBanco(Banco banco)
         {
             Banco = banco;
         }
+
+        public Conta() { }
     }
 }

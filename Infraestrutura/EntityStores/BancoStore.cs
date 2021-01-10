@@ -2,7 +2,6 @@
 using Domain.Transacoes;
 using Infraestrutura.Context;
 using System;
-using System.Data;
 using System.Threading.Tasks;
 
 namespace Infraestrutura.Stores
@@ -26,9 +25,10 @@ namespace Infraestrutura.Stores
 
         public async Task<Banco> RegistrarBanco(Banco banco)
         {
-            var idGerado = await _context.GetConnection().ExecuteScalarAsync<Guid>(SQL_REGISTRAR_BANCO, new 
-            { nome = banco.Nome, 
-              codigo = banco.Codigo 
+            var idGerado = await _context.GetConnection().ExecuteScalarAsync<Guid>(SQL_REGISTRAR_BANCO, new
+            {
+                nome = banco.Nome,
+                codigo = banco.Codigo
             });
 
             banco.AlterarIdentificador(idGerado);

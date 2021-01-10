@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ProcessExpress.Controllers
-{
-    [Route("api/[controller]")]
+{   
     [ApiController]
     public abstract class ApiController : ControllerBase
     {

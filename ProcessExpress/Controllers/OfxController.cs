@@ -1,9 +1,11 @@
 ﻿using Application.Commands.Ofx.Importar;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace ProcessExpress.Controllers
-{
+{   
+    [Route("process-express/api/v{version:apiVersion}/[controller]")]
     public class OfxController : ApiController
     {
         [HttpPost]

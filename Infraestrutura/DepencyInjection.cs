@@ -1,8 +1,10 @@
 ﻿using Domain.Base;
 using Infraestrutura.Context;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using NSwag;
+using NSwag.AspNetCore;
 using NSwag.Generation.Processors.Security;
 using System;
 using System.Linq;
@@ -65,10 +67,16 @@ namespace Infraestrutura
                 });
         }
 
-        public static IApplicationBuilder ConfigureSwagger(this IApplicationBuilder app)
+        public static IApplicationBuilder ConfigureSwagger(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
             app.UseOpenApi();
-            app.UseSwaggerUi3();
+            app.UseSwaggerUi3(options =>
+            {
+                foreach(var description in provider.ApiVersionDescriptions)
+                {
+                    options.SwaggerRoutes.Add(new SwaggerUi3Route(description.GroupName, $"/swagger/{description.GroupName}/swagger.json"));
+                }
+            });
             return app;
         }
     }

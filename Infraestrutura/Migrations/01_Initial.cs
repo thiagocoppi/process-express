@@ -22,6 +22,9 @@ namespace Infraestrutura.Migrations
             Create.Table("conta").WithDescription("Tabela que armazena as contas dos clientes")
                 .WithColumn("numero").AsInt32().NotNullable().WithColumnDescription("Número da conta")
                 .WithColumn("agencia").AsInt32().NotNullable().WithColumnDescription("Código da agência da conta")
+                .WithColumn("nome").AsString().Nullable().WithColumnDescription("Nome do titular da conta")
+                .WithColumn("data_nascimento").AsDate().Nullable().WithColumnDescription("Data nascimento do titular")
+                .WithColumn("contato_principal").AsString().Nullable().WithColumnDescription("Contato principal do titular")
                 .WithColumn("id").AsGuid().NotNullable().WithDefault(SystemMethods.NewGuid).PrimaryKey().WithColumnDescription("Identificador único da tabela")
                 .WithColumn("banco_id").AsGuid().NotNullable().ForeignKey("banco", "id");
         }

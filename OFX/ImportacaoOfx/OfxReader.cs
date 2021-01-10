@@ -69,7 +69,7 @@ namespace OFX.ImportacaoOfx
 
                     _logger.LogInformation("Inserindo a transação com a identificação {0}", transacao.IdentificadorTransacao);
 
-                    await _transacaoStore.SalvarTransacao(transacao);
+                    await _transacaoStore.SalvarTransacaoComIdentificadorUnico(transacao);
                 }
             }
         }

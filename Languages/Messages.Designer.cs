@@ -61,6 +61,42 @@ namespace Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A conta(Agência/Número) {0}/{1} não foram encontradas para registrar a transação.
+        /// </summary>
+        public static string ContaInexistente {
+            get {
+                return ResourceManager.GetString("ContaInexistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conta informada é inválida para atualizar os dados.
+        /// </summary>
+        public static string ContaInvalidaParaAtualizarDados {
+            get {
+                return ResourceManager.GetString("ContaInvalidaParaAtualizarDados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conta inválida para gerar o hash da transação.
+        /// </summary>
+        public static string ErroGerarHashContaInvalida {
+            get {
+                return ResourceManager.GetString("ErroGerarHashContaInvalida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foi encontrado um lançamento já para esse identificador único {0}.
+        /// </summary>
+        public static string LancamentoDuplicado {
+            get {
+                return ResourceManager.GetString("LancamentoDuplicado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O tipo do arquivo {0} é inválido para importação!.
         /// </summary>
         public static string TipoArquivoInvalido {
@@ -84,6 +120,15 @@ namespace Languages {
         public static string TokenInvalidoParaCriacao {
             get {
                 return ResourceManager.GetString("TokenInvalidoParaCriacao", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Não foi encontrado nenhuma transação para ser registrada.
+        /// </summary>
+        public static string TransacaoInvalida {
+            get {
+                return ResourceManager.GetString("TransacaoInvalida", resourceCulture);
             }
         }
     }
