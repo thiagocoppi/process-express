@@ -46,7 +46,6 @@ namespace Infraestrutura
         public static void RegisterAllStores(this IServiceCollection services)
         {
             var typeInterface = typeof(IStore);
-            services.AddSingleton<IProcessExpressContext, ProcessExpressContext>();
 
             AppDomain
                 .CurrentDomain
@@ -65,6 +64,11 @@ namespace Infraestrutura
                         }
                     }
                 });
+        }
+
+        public static void RegisterDbContext(this IServiceCollection services)
+        {
+            services.AddSingleton<IProcessExpressContext, ProcessExpressContext>();
         }
 
         public static IApplicationBuilder ConfigureSwagger(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)

@@ -31,7 +31,7 @@ namespace ProcessExpress
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<ProcessExpressStartup>();
                 })
                 .ConfigureAppConfiguration(configuration =>
                 {
