@@ -13,7 +13,7 @@ namespace ProcessExpress
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; set; }
 
         public abstract void ConfigureServices(IServiceCollection services);
 

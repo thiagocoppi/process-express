@@ -1,4 +1,5 @@
 using FluentMigrator.Runner;
+using FluentMigrator.Runner.Initialization;
 using Infraestrutura.Migrations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -90,6 +91,10 @@ namespace ProcessExpress
                     .WithGlobalConnectionString(configuration["ConnectionStrings:DefaultConnection"])
                     .ScanIn(typeof(BaseMigration).Assembly).For.Migrations())
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
+                .Configure<RunnerOptions>(opt =>
+                {
+                    opt.Tags = new[] { "Production", "Development" };
+                })
                 .BuildServiceProvider(false);
         }
 
