@@ -1,4 +1,5 @@
 ﻿using Application.Queries.Contabilidade.RelatorioTransacoes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 namespace ProcessExpress.Controllers
 {
     [Route("process-express/api/v{version:apiVersion}/[controller]")]
-    //[Authorize]
+    [Authorize]
     public class ContabilidadeController : ApiController
     {
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace ProcessExpress.Controllers
 {   
     [Route("process-express/api/v{version:apiVersion}/[controller]")]
+    [Authorize]
     public class OfxController : ApiController
     {
         [HttpPost]

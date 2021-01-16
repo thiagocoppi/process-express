@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ProcessExpress.Controllers
 {
     [Route("process-express/api/v{version:apiVersion}/[controller]")]
-    //[Authorize]
+    [Authorize]
     public class ContaBancariaController : ApiController
     {
         [HttpGet("buscar-conta/{id}")]
