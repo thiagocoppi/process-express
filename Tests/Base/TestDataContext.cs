@@ -5,6 +5,9 @@ using System.Data;
 
 namespace Tests.Base
 {
+    /// <summary>
+    /// Contexto de dados para os testes caso seja de integração
+    /// </summary>
     public sealed class TestDataContext : IProcessExpressContext
     {
         private readonly IConfiguration _configuration;

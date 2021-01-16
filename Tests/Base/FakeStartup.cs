@@ -1,7 +1,6 @@
 ﻿using Domain;
 using Domain.Base;
 using Infraestrutura;
-using Infraestrutura.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +34,6 @@ namespace Tests.Base
 
             services.RegisterAllTypes<IDomainService>();
             services.RegisterAllStores();
-            services.AddSingleton<IProcessExpressContext, TestDataContext>();
         }
 
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
@@ -47,8 +45,6 @@ namespace Tests.Base
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
-
-            DataBase.RunMigrations(builder.Build());
         }
     }
 }

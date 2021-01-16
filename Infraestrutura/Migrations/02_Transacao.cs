@@ -3,7 +3,7 @@
 namespace Infraestrutura.Migrations
 {
     [Migration(02)]
-    [Tags("Production", "Development", "QA")]
+    [Tags("Production", "Development")]
     public class TransacaoMigration : BaseMigration
     {
         public override void Down()
@@ -16,7 +16,7 @@ namespace Infraestrutura.Migrations
         public override void Up()
         {
             Create.Table("banco").WithDescription("Tabela que armazena todos os bancos fornecidos pelo banco central")
-                   .WithColumn("id").AsGuid().NotNullable().PrimaryKey().WithColumnDescription("Identificador único da tabela")
+                   .WithColumn("id").AsGuid().NotNullable().WithDefault(SystemMethods.NewGuid).NotNullable().PrimaryKey().WithColumnDescription("Identificador único da tabela")
                    .WithColumn("nome").AsString().WithColumnDescription("Nome do banco")
                    .WithColumn("codigo").AsInt32().NotNullable().WithColumnDescription("Código único do banco dentro do BC");
 
@@ -26,12 +26,12 @@ namespace Infraestrutura.Migrations
                 .WithColumn("nome").AsString().Nullable().WithColumnDescription("Nome do titular da conta")
                 .WithColumn("data_nascimento").AsDate().Nullable().WithColumnDescription("Data nascimento do titular")
                 .WithColumn("contato_principal").AsString().Nullable().WithColumnDescription("Contato principal do titular")
-                .WithColumn("id").AsGuid().NotNullable().PrimaryKey().WithColumnDescription("Identificador único da tabela")
-                .WithColumn("banco_id").AsGuid().NotNullable().ForeignKey("banco", "id");
+                .WithColumn("id").AsGuid().NotNullable().WithDefault(SystemMethods.NewGuid).PrimaryKey().WithColumnDescription("Identificador único da tabela")
+                .WithColumn("banco_id").AsGuid().NotNullable().WithDefault(SystemMethods.NewGuid).NotNullable().ForeignKey("banco", "id");
 
             Create.Table("transacao").WithDescription("Tabela que armazena todas as transações")
-                .WithColumn("id").AsGuid().NotNullable().PrimaryKey().WithColumnDescription("Identificador único do registro")
-                .WithColumn("conta_id").AsGuid().NotNullable().ForeignKey("conta", "id").WithColumnDescription("Conta vinculada a transação")
+                .WithColumn("id").AsGuid().NotNullable().WithDefault(SystemMethods.NewGuid).PrimaryKey().WithColumnDescription("Identificador único do registro")
+                .WithColumn("conta_id").AsGuid().NotNullable().WithDefault(SystemMethods.NewGuid).ForeignKey("conta", "id").WithColumnDescription("Conta vinculada a transação")
                 .WithColumn("tipo_transacao").AsString().NotNullable().WithDefaultValue("OUTROS").WithColumnDescription("Tipo da transação")
                 .WithColumn("data_transacao").AsDate().NotNullable().WithColumnDescription("Data da transação")
                 .WithColumn("valor").AsDecimal().NotNullable().WithColumnDescription("Valor da transação")
