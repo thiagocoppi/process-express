@@ -28,6 +28,6 @@ Foi utilizado nesse projeto;
 Para esteira de build foi escolhido o TravisCI do qual consta no início do Readme o link dos builds e seu status.
 
 Pontos que necessitariam de melhoria identificados nesta solução;
-- Melhorar a parte de infraestrutura para utilizar os volumes do docker no dockerfile
+- Melhorar a parte de infraestrutura para utilizar os volumes do docker no dockerfile para armazenar os arquivos OFX dentro
 - Criar alguma abstração de componentes para IoC
 
